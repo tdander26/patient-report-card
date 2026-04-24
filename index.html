@@ -635,7 +635,135 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg-
 #macroModalSub,#pickerSub,#emailSub,#doseSub,#tmSub{color:var(--text-muted)!important}
 .qp-back-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:8px;border:1px solid var(--border-dim);background:rgba(255,255,255,.06);color:var(--text-secondary);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;margin-bottom:10px;font-family:inherit}
 .qp-back-btn:hover{background:var(--amber-dim);border-color:rgba(200,130,10,.4);color:var(--amber-bright)}
+
+/* ══ LABS TIMELINE ══ */
+.lab-draw-card{margin-top:12px;padding:14px 16px;border-radius:10px;border:1.5px dashed var(--border-dim);background:rgba(255,255,255,.02);transition:all .2s}
+.lab-draw-card.has-data{border-style:solid;border-color:rgba(200,130,10,.35);background:linear-gradient(135deg,rgba(200,130,10,.06),rgba(255,255,255,.02))}
+.lab-draw-card.dragging{border-color:var(--amber);background:var(--amber-dim)}
+.lab-draw-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.lab-draw-title{display:flex;align-items:center;gap:8px;font-weight:800;font-size:13px;color:var(--text-secondary)}
+.lab-draw-empty{font-size:12px;color:var(--text-muted)}
+.lab-draw-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.lab-stat{padding:4px 10px;border-radius:var(--r-pill);font-size:11px;font-weight:700;border:1px solid var(--border-dim);background:rgba(255,255,255,.04);color:var(--text-secondary)}
+.lab-stat.red{background:rgba(239,68,68,.12);color:#fca5a5;border-color:rgba(239,68,68,.3)}
+.lab-stat.yellow{background:rgba(234,179,8,.12);color:#fcd34d;border-color:rgba(234,179,8,.3)}
+.lab-stat.green{background:rgba(34,197,94,.12);color:#86efac;border-color:rgba(34,197,94,.3)}
+.lab-stat.blue{background:rgba(59,130,246,.12);color:#93c5fd;border-color:rgba(59,130,246,.3)}
+.lab-upload-btn{padding:8px 14px;border-radius:8px;border:1px solid rgba(200,130,10,.35);background:var(--amber-dim);color:var(--amber-bright);font-size:12px;font-weight:800;cursor:pointer;transition:all .15s;font-family:inherit}
+.lab-upload-btn:hover{background:var(--amber);color:#0D0F14}
+.lab-mini-btn{padding:5px 10px;border-radius:6px;border:1px solid var(--border-dim);background:rgba(255,255,255,.05);color:var(--text-secondary);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s}
+.lab-mini-btn:hover{background:rgba(255,255,255,.1);border-color:var(--border-medium)}
+.lab-mini-btn.danger:hover{background:rgba(239,68,68,.15);color:#fca5a5;border-color:rgba(239,68,68,.4)}
+
+/* Labs Trends Tab */
+#phase4{padding-bottom:80px}
+.labs-hero{background:var(--bg-card);border:1px solid var(--border-subtle);border-left:3px solid var(--amber);border-radius:var(--r-card);padding:18px 22px;margin-bottom:14px;box-shadow:var(--shadow-card)}
+.labs-hero h2{font-size:18px;font-weight:800;color:var(--text-primary);margin-bottom:4px}
+.labs-hero .sub{font-size:12px;color:var(--text-muted)}
+.labs-empty{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-card);padding:60px 20px;text-align:center;color:var(--text-muted)}
+.labs-empty .emoji{font-size:48px;margin-bottom:14px}
+.labs-empty h3{font-size:16px;font-weight:700;color:var(--text-secondary);margin-bottom:6px}
+.labs-empty p{font-size:13px;max-width:480px;margin:0 auto;line-height:1.6}
+
+.labs-scoreboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:14px}
+.score-tile{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-card);padding:14px 16px;box-shadow:var(--shadow-card);position:relative;overflow:hidden}
+.score-tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--text-dim)}
+.score-tile.green::before{background:#22c55e}
+.score-tile.red::before{background:#ef4444}
+.score-tile.amber::before{background:var(--amber)}
+.score-tile.blue::before{background:#3b82f6}
+.score-label{font-size:10px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
+.score-value{font-size:26px;font-weight:900;color:var(--text-primary);margin-top:4px;line-height:1}
+.score-sub{font-size:11px;color:var(--text-muted);margin-top:4px}
+
+.labs-view-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.labs-view-tab{padding:8px 14px;border-radius:8px;border:1px solid var(--border-dim);background:var(--bg-card);color:var(--text-muted);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;font-family:inherit}
+.labs-view-tab:hover{color:var(--text-secondary);border-color:var(--border-medium)}
+.labs-view-tab.active{background:var(--amber);color:#0D0F14;border-color:var(--amber)}
+.labs-view-panel{display:none}
+.labs-view-panel.active{display:block}
+
+.labs-filter-bar{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.labs-search{flex:1;min-width:200px;padding:9px 12px;border:1.5px solid var(--border-dim);border-radius:8px;background:var(--bg-input);color:var(--text-primary);font-size:13px;outline:none;font-family:inherit;transition:border-color .2s}
+.labs-search:focus{border-color:var(--amber);box-shadow:var(--amber-glow)}
+.labs-section-chip{padding:6px 12px;border-radius:var(--r-pill);border:1px solid var(--border-dim);background:var(--bg-card);color:var(--text-muted);font-size:11px;font-weight:700;cursor:pointer;transition:all .15s;font-family:inherit}
+.labs-section-chip.active{background:var(--amber-dim);color:var(--amber-bright);border-color:rgba(200,130,10,.4)}
+
+.trend-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.trend-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-card);padding:14px;box-shadow:var(--shadow-card);cursor:pointer;transition:all .18s}
+.trend-card:hover{border-color:var(--amber);transform:translateY(-2px);box-shadow:var(--shadow-amber),var(--shadow-card)}
+.trend-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:8px}
+.trend-name{font-size:12px;font-weight:800;color:var(--text-primary);line-height:1.3}
+.trend-section{font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.trend-latest{font-size:20px;font-weight:900;color:var(--text-primary);line-height:1}
+.trend-unit{font-size:10px;font-weight:600;color:var(--text-muted);margin-left:3px}
+.trend-delta{font-size:11px;font-weight:800;padding:2px 8px;border-radius:var(--r-pill);display:inline-block;margin-top:4px}
+.trend-delta.up{background:rgba(34,197,94,.12);color:#86efac}
+.trend-delta.down{background:rgba(239,68,68,.12);color:#fca5a5}
+.trend-delta.flat{background:rgba(148,163,184,.12);color:var(--text-muted)}
+.trend-delta.up.bad{background:rgba(239,68,68,.12);color:#fca5a5}
+.trend-delta.down.good{background:rgba(34,197,94,.12);color:#86efac}
+.trend-canvas-wrap{height:70px;margin-top:8px;position:relative}
+.trend-status-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:middle}
+.trend-range{font-size:10px;color:var(--text-dim);margin-top:6px}
+
+.hm-wrap{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-card);padding:16px;overflow:auto;box-shadow:var(--shadow-card)}
+.hm-table{border-collapse:separate;border-spacing:2px;min-width:100%}
+.hm-table th{position:sticky;top:0;background:var(--bg-card);font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;padding:6px 8px;text-align:center;z-index:1}
+.hm-table td.hm-name{font-size:11px;font-weight:700;color:var(--text-secondary);padding:4px 10px 4px 0;white-space:nowrap;text-align:right;max-width:220px;overflow:hidden;text-overflow:ellipsis}
+.hm-table td.hm-section{font-size:9px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;padding:12px 10px 4px 0;text-align:left;white-space:nowrap}
+.hm-cell{width:56px;height:30px;border-radius:4px;text-align:center;font-size:10px;font-weight:700;cursor:pointer;transition:transform .1s}
+.hm-cell:hover{transform:scale(1.1);outline:1px solid var(--amber)}
+.hm-cell.c-green{background:rgba(34,197,94,.22);color:#bbf7d0}
+.hm-cell.c-yellow{background:rgba(234,179,8,.22);color:#fde68a}
+.hm-cell.c-red{background:rgba(239,68,68,.24);color:#fecaca}
+.hm-cell.c-none{background:rgba(255,255,255,.03);color:var(--text-dim)}
+
+.mover-list{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.mover-list{grid-template-columns:1fr}}
+.mover-col{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-card);padding:14px 16px;box-shadow:var(--shadow-card)}
+.mover-col h4{font-size:12px;font-weight:800;color:var(--text-secondary);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.mover-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--border-subtle);cursor:pointer}
+.mover-row:last-child{border-bottom:none}
+.mover-row:hover .mover-name{color:var(--amber-bright)}
+.mover-name{font-size:12px;font-weight:700;color:var(--text-secondary)}
+.mover-delta{font-size:12px;font-weight:800}
+.mover-delta.good{color:#86efac}
+.mover-delta.bad{color:#fca5a5}
+.mover-val{font-size:10px;color:var(--text-muted);margin-top:2px}
+
+.radar-wrap{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-card);padding:20px;box-shadow:var(--shadow-card);display:grid;grid-template-columns:1fr 260px;gap:24px;align-items:center}
+@media(max-width:720px){.radar-wrap{grid-template-columns:1fr}}
+.radar-canvas-wrap{position:relative;height:420px}
+.radar-legend{display:flex;flex-direction:column;gap:10px}
+.radar-chip{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-secondary)}
+.radar-dot{width:12px;height:12px;border-radius:3px}
+.radar-help{font-size:11px;color:var(--text-muted);line-height:1.6;margin-top:8px}
+
+.corr-wrap{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-card);padding:18px;box-shadow:var(--shadow-card)}
+.corr-picker{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.corr-picker select{padding:8px 12px;border:1.5px solid var(--border-dim);border-radius:8px;background:var(--bg-input);color:var(--text-primary);font-size:13px;outline:none;font-family:inherit;min-width:200px}
+.corr-picker select:focus{border-color:var(--amber)}
+.corr-canvas-wrap{position:relative;height:380px}
+
+/* Lab zoom modal */
+.lz-overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;z-index:9998;padding:20px}
+.lz-overlay.show{display:flex}
+.lz-box{background:var(--bg-card);border:1px solid var(--border-dim);border-radius:14px;max-width:900px;width:100%;max-height:90vh;overflow:auto;padding:22px;box-shadow:var(--shadow-modal)}
+.lz-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
+.lz-title{font-size:18px;font-weight:800;color:var(--text-primary)}
+.lz-section{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.lz-close{background:rgba(255,255,255,.08);border:1px solid var(--border-dim);color:var(--text-secondary);padding:6px 12px;border-radius:8px;font-weight:700;cursor:pointer;font-family:inherit}
+.lz-meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
+.lz-canvas-wrap{position:relative;height:340px;margin-bottom:16px}
+.lz-table{width:100%;border-collapse:collapse;font-size:12px}
+.lz-table th{text-align:left;font-size:10px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 10px;border-bottom:1px solid var(--border-subtle)}
+.lz-table td{padding:8px 10px;border-bottom:1px solid var(--border-subtle);color:var(--text-secondary)}
+.lz-table tr:last-child td{border-bottom:none}
+.lz-note{font-size:12px;color:var(--text-muted);background:rgba(255,255,255,.03);border:1px solid var(--border-subtle);border-radius:8px;padding:10px 12px;line-height:1.6;margin-top:6px}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
 </head>
 <body>
 
@@ -978,11 +1106,30 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg-
     <div class="phase-tab active" onclick="switchPhase(1)">Phase 1 — Visits 1–6</div>
     <div class="phase-tab"        onclick="switchPhase(2)">Phase 2 — Visits 7–12</div>
     <div class="phase-tab"        onclick="switchPhase(3)">Phase 3 — Visits 13–18</div>
+    <div class="phase-tab"        onclick="switchPhase(4)" style="margin-left:auto">🧪 Labs Trends</div>
   </div>
   <div class="vjump-strip" id="vjumpStrip"></div>
   <div id="phase1" class="phase-content active"><div class="visits-grid" id="pg1"></div></div>
   <div id="phase2" class="phase-content">       <div class="visits-grid" id="pg2"></div></div>
   <div id="phase3" class="phase-content">       <div class="visits-grid" id="pg3"></div></div>
+  <div id="phase4" class="phase-content"></div>
+
+  <!-- Lab zoom modal -->
+  <div class="lz-overlay" id="lzOverlay" onclick="if(event.target===this)closeLabZoom()">
+    <div class="lz-box">
+      <div class="lz-head">
+        <div>
+          <div class="lz-title" id="lzTitle">—</div>
+          <div class="lz-section" id="lzSection">—</div>
+        </div>
+        <button class="lz-close" onclick="closeLabZoom()">✕ Close</button>
+      </div>
+      <div class="lz-meta" id="lzMeta"></div>
+      <div class="lz-canvas-wrap"><canvas id="lzChart"></canvas></div>
+      <table class="lz-table" id="lzTable"></table>
+      <div class="lz-note" id="lzNote" style="display:none"></div>
+    </div>
+  </div>
 
 </div>
 
@@ -1158,7 +1305,7 @@ var FIELDS = [
 //  PATIENT RECORD STATE
 // ════════════════════════════════════════════════════════════════
 function blankState() {
-  return {patientInfo:{status:"active",collection:""},symptoms:{},symLabels:{},symRows:4,visitDates:{},visitNotes:{},visitAssessment:{},visitPlan:{},marks:{},symVisited:{},offenderTags:{},compliance:{},labsReviewed:{},suppDoses:{},followUp:{},statusHistory:[],labTracking:{}};
+  return {patientInfo:{status:"active",collection:""},symptoms:{},symLabels:{},symRows:4,visitDates:{},visitNotes:{},visitAssessment:{},visitPlan:{},marks:{},symVisited:{},offenderTags:{},compliance:{},labsReviewed:{},suppDoses:{},followUp:{},statusHistory:[],labTracking:{},visitLabs:{}};
 }
 var S = blankState();
 
@@ -1937,7 +2084,879 @@ function clearMode(){
 function switchPhase(n){
   document.querySelectorAll(".phase-tab").forEach(function(t,i){ t.classList.toggle("active",i===n-1); });
   document.querySelectorAll(".phase-content").forEach(function(c,i){ c.classList.toggle("active",i===n-1); });
+  if(n===4) renderLabsTab();
 }
+
+// ════════════════════════════════════════════════════════════════
+//  LABS TIMELINE — blood chemistry tracker integration
+//  Upload .xlsx from blood-chem-tracker per visit; chart across visits.
+// ════════════════════════════════════════════════════════════════
+// Biomarkers mirror blood-chemistry-tracker TEST_MAP (column D, row N).
+// Each entry: [row, section, unit, optLow, optHigh, direction]
+// direction: "range"=in-range is good, "lower"=lower is better, "higher"=higher is better
+var LAB_BIOMARKERS = {
+  "Hemoglobin":             {row:7, section:"CBC + Differential", unit:"g/dL", optLow:13.5, optHigh:15.5, dir:"range"},
+  "Hematocrit":             {row:8, section:"CBC + Differential", unit:"%",    optLow:38,   optHigh:46,   dir:"range"},
+  "RBC":                    {row:9, section:"CBC + Differential", unit:"M/µL", optLow:4.2,  optHigh:5.2,  dir:"range"},
+  "MCV":                    {row:10,section:"CBC + Differential", unit:"fL",   optLow:85,   optHigh:92,   dir:"range"},
+  "MCH":                    {row:11,section:"CBC + Differential", unit:"pg",   optLow:27,   optHigh:32,   dir:"range"},
+  "MCHC":                   {row:12,section:"CBC + Differential", unit:"g/dL", optLow:32,   optHigh:35,   dir:"range"},
+  "RDW":                    {row:13,section:"CBC + Differential", unit:"%",    optLow:11.5, optHigh:13.5, dir:"lower"},
+  "Platelets":              {row:14,section:"CBC + Differential", unit:"K/µL", optLow:155,  optHigh:385,  dir:"range"},
+  "WBC":                    {row:15,section:"CBC + Differential", unit:"K/µL", optLow:4.0,  optHigh:7.5,  dir:"range"},
+  "Neutrophils":            {row:16,section:"CBC + Differential", unit:"%",    optLow:40,   optHigh:60,   dir:"range"},
+  "Lymphs":                 {row:17,section:"CBC + Differential", unit:"%",    optLow:24,   optHigh:44,   dir:"range"},
+  "Monocytes":              {row:18,section:"CBC + Differential", unit:"%",    optLow:4,    optHigh:11,   dir:"range"},
+  "Eos":                    {row:19,section:"CBC + Differential", unit:"%",    optLow:0,    optHigh:3,    dir:"lower"},
+  "Basos":                  {row:20,section:"CBC + Differential", unit:"%",    optLow:0,    optHigh:1,    dir:"lower"},
+  "Neutrophils (Absolute)": {row:21,section:"CBC + Differential", unit:"K/µL", optLow:1.8,  optHigh:4.5,  dir:"range"},
+  "Lymphs (Absolute)":      {row:22,section:"CBC + Differential", unit:"K/µL", optLow:1.2,  optHigh:3.2,  dir:"range"},
+  "Monocytes(Absolute)":    {row:23,section:"CBC + Differential", unit:"K/µL", optLow:0.2,  optHigh:0.8,  dir:"range"},
+  "Eos (Absolute)":         {row:24,section:"CBC + Differential", unit:"K/µL", optLow:0,    optHigh:0.3,  dir:"lower"},
+  "Baso (Absolute)":        {row:25,section:"CBC + Differential", unit:"K/µL", optLow:0,    optHigh:0.1,  dir:"lower"},
+  "Immature Granulocytes":  {row:26,section:"CBC + Differential", unit:"%",    optLow:0,    optHigh:0.5,  dir:"lower"},
+  "Immature Grans (Abs)":   {row:27,section:"CBC + Differential", unit:"K/µL", optLow:0,    optHigh:0.05, dir:"lower"},
+  "Glucose":                {row:30,section:"Metabolic",          unit:"mg/dL",optLow:75,   optHigh:90,   dir:"range"},
+  "Hemoglobin A1c":         {row:31,section:"Metabolic",          unit:"%",    optLow:4.6,  optHigh:5.3,  dir:"lower"},
+  "Insulin":                {row:32,section:"Metabolic",          unit:"µIU/mL",optLow:2,   optHigh:6,    dir:"lower"},
+  "Cholesterol, Total":     {row:35,section:"Lipid",              unit:"mg/dL",optLow:160,  optHigh:220,  dir:"range"},
+  "Triglycerides":          {row:36,section:"Lipid",              unit:"mg/dL",optLow:50,   optHigh:100,  dir:"lower"},
+  "LDL Chol Calc (NIH)":    {row:37,section:"Lipid",              unit:"mg/dL",optLow:60,   optHigh:120,  dir:"lower"},
+  "HDL Cholesterol":        {row:38,section:"Lipid",              unit:"mg/dL",optLow:55,   optHigh:100,  dir:"higher"},
+  "VLDL Cholesterol Cal":   {row:40,section:"Lipid",              unit:"mg/dL",optLow:5,    optHigh:20,   dir:"lower"},
+  "Protein, Total":         {row:42,section:"Metabolic",          unit:"g/dL", optLow:6.9,  optHigh:7.4,  dir:"range"},
+  "Albumin":                {row:43,section:"Metabolic",          unit:"g/dL", optLow:4.0,  optHigh:5.0,  dir:"range"},
+  "Globulin, Total":        {row:44,section:"Metabolic",          unit:"g/dL", optLow:2.4,  optHigh:2.8,  dir:"range"},
+  "eGFR":                   {row:47,section:"Kidney",             unit:"mL/min",optLow:90,  optHigh:120,  dir:"higher"},
+  "Uric Acid":              {row:49,section:"Metabolic",          unit:"mg/dL",optLow:3.0,  optHigh:5.5,  dir:"lower"},
+  "BUN":                    {row:50,section:"Kidney",             unit:"mg/dL",optLow:10,   optHigh:16,   dir:"range"},
+  "Creatinine":             {row:51,section:"Kidney",             unit:"mg/dL",optLow:0.8,  optHigh:1.1,  dir:"range"},
+  "BUN/Creatinine Ratio":   {row:52,section:"Kidney",             unit:"",     optLow:10,   optHigh:16,   dir:"range"},
+  "AST (SGOT)":             {row:54,section:"Liver",              unit:"U/L",  optLow:10,   optHigh:26,   dir:"lower"},
+  "ALT (SGPT)":             {row:55,section:"Liver",              unit:"U/L",  optLow:10,   optHigh:26,   dir:"lower"},
+  "GGT":                    {row:56,section:"Liver",              unit:"U/L",  optLow:10,   optHigh:17,   dir:"lower"},
+  "LDH":                    {row:57,section:"Liver",              unit:"U/L",  optLow:140,  optHigh:180,  dir:"range"},
+  "Alkaline Phosphatase":   {row:58,section:"Liver",              unit:"U/L",  optLow:70,   optHigh:100,  dir:"range"},
+  "Bilirubin, Total":       {row:59,section:"Liver",              unit:"mg/dL",optLow:0.3,  optHigh:1.2,  dir:"range"},
+  "Bilirubin, Direct":      {row:60,section:"Liver",              unit:"mg/dL",optLow:0,    optHigh:0.3,  dir:"lower"},
+  "Bilirubin, Indirect":    {row:61,section:"Liver",              unit:"mg/dL",optLow:0.2,  optHigh:0.8,  dir:"range"},
+  "Sodium":                 {row:63,section:"Minerals",           unit:"mmol/L",optLow:135, optHigh:142,  dir:"range"},
+  "Potassium":              {row:64,section:"Minerals",           unit:"mmol/L",optLow:4.0, optHigh:4.5,  dir:"range"},
+  "Chloride":               {row:65,section:"Minerals",           unit:"mmol/L",optLow:100, optHigh:106,  dir:"range"},
+  "Carbon Dioxide, Total":  {row:66,section:"Minerals",           unit:"mmol/L",optLow:25,  optHigh:30,   dir:"range"},
+  "Calcium":                {row:68,section:"Minerals",           unit:"mg/dL",optLow:9.2,  optHigh:10.1, dir:"range"},
+  "Magnesium":              {row:69,section:"Minerals",           unit:"mg/dL",optLow:2.0,  optHigh:2.5,  dir:"range"},
+  "Phosphorus":             {row:70,section:"Minerals",           unit:"mg/dL",optLow:3.0,  optHigh:4.0,  dir:"range"},
+  "Iron":                   {row:72,section:"Iron",               unit:"µg/dL",optLow:85,   optHigh:130,  dir:"range"},
+  "Ferritin":               {row:73,section:"Iron",               unit:"ng/mL",optLow:50,   optHigh:150,  dir:"range"},
+  "Iron Bind.Cap.(TIBC)":   {row:74,section:"Iron",               unit:"µg/dL",optLow:250,  optHigh:350,  dir:"range"},
+  "UIBC":                   {row:75,section:"Iron",               unit:"µg/dL",optLow:155,  optHigh:300,  dir:"range"},
+  "Transferrin":            {row:77,section:"Iron",               unit:"mg/dL",optLow:215,  optHigh:365,  dir:"range"},
+  "Vitamin D, 25-Hydroxy":  {row:79,section:"D-FLAME",            unit:"ng/mL",optLow:50,   optHigh:80,   dir:"range"},
+  "Homocyst(e)ine":         {row:80,section:"D-FLAME",            unit:"µmol/L",optLow:5,   optHigh:7,    dir:"lower"},
+  "C-Reactive Protein, Cardiac":{row:81,section:"D-FLAME",        unit:"mg/L", optLow:0,    optHigh:1.0,  dir:"lower"},
+  "TSH":                    {row:83,section:"Thyroid",            unit:"µIU/mL",optLow:1.0, optHigh:2.0,  dir:"range"},
+  "Thyroxine (T4)":         {row:84,section:"Thyroid",            unit:"µg/dL",optLow:6.0,  optHigh:11.9, dir:"range"},
+  "T3 Uptake":              {row:85,section:"Thyroid",            unit:"%",    optLow:28,   optHigh:38,   dir:"range"},
+  "Free Thyroxine Index":   {row:86,section:"Thyroid",            unit:"",     optLow:1.4,  optHigh:3.8,  dir:"range"},
+  "Triiodothyronine (T3)":  {row:87,section:"Thyroid",            unit:"ng/dL",optLow:100,  optHigh:180,  dir:"range"},
+  "Triiodothyronine (T3), Free":{row:88,section:"Thyroid",        unit:"pg/mL",optLow:3.2,  optHigh:4.2,  dir:"range"},
+  "T4,Free(Direct)":        {row:89,section:"Thyroid",            unit:"ng/dL",optLow:1.2,  optHigh:1.8,  dir:"range"},
+  "Reverse T3, Serum":      {row:90,section:"Thyroid",            unit:"ng/dL",optLow:9,    optHigh:15,   dir:"lower"},
+  "Thyroid Peroxidase (TPO) Ab":{row:91,section:"Thyroid",        unit:"IU/mL",optLow:0,    optHigh:9,    dir:"lower"},
+  "Thyroglobulin Antibody": {row:92,section:"Thyroid",            unit:"IU/mL",optLow:0,    optHigh:1,    dir:"lower"},
+  "Thyroxine Binding Globulin":{row:93,section:"Thyroid",         unit:"µg/mL",optLow:13,   optHigh:39,   dir:"range"}
+};
+var LAB_SECTION_ORDER = ["Metabolic","Lipid","Thyroid","Liver","Kidney","D-FLAME","Minerals","Iron","CBC + Differential"];
+// Which biomarkers participate in each radar axis — pulled to system-level scores.
+var LAB_RADAR_AXES = [
+  {label:"Metabolic",    markers:["Glucose","Hemoglobin A1c","Insulin","Uric Acid"]},
+  {label:"Lipid",        markers:["Cholesterol, Total","Triglycerides","LDL Chol Calc (NIH)","HDL Cholesterol"]},
+  {label:"Thyroid",      markers:["TSH","T4,Free(Direct)","Triiodothyronine (T3), Free","Reverse T3, Serum"]},
+  {label:"Liver",        markers:["AST (SGOT)","ALT (SGPT)","GGT","Alkaline Phosphatase","Bilirubin, Total"]},
+  {label:"Kidney",       markers:["eGFR","BUN","Creatinine","BUN/Creatinine Ratio"]},
+  {label:"Inflammation", markers:["C-Reactive Protein, Cardiac","Homocyst(e)ine"]},
+  {label:"Nutrients",    markers:["Vitamin D, 25-Hydroxy","Ferritin","Iron","Magnesium"]},
+  {label:"Blood",        markers:["Hemoglobin","Hematocrit","RBC","RDW","Platelets","WBC"]}
+];
+
+var _labsView = "overview";     // overview | trends | heatmap | radar | movers | correlations
+var _labsFilter = { query:"", section:"All" };
+
+// Classification & delta helpers -----------------------------------
+function labStatus(name, value){
+  if(value==null || value==="" || isNaN(value)) return "none";
+  var bm=LAB_BIOMARKERS[name]; if(!bm) return "none";
+  var v=+value;
+  if(v>=bm.optLow && v<=bm.optHigh) return "green";
+  // yellow = within 15% of range edge, red = farther out
+  var span=bm.optHigh-bm.optLow; var edge=Math.max(span*0.15, bm.optLow*0.05);
+  if(v<bm.optLow && v>=bm.optLow-edge) return "yellow";
+  if(v>bm.optHigh && v<=bm.optHigh+edge) return "yellow";
+  return "red";
+}
+function labColor(status){
+  return status==="green"?"#22c55e":status==="yellow"?"#eab308":status==="red"?"#ef4444":"#64748b";
+}
+// Did the marker improve going from oldV to newV?
+function isImproved(bm, oldV, newV){
+  if(oldV==null||newV==null||isNaN(oldV)||isNaN(newV)) return false;
+  if(bm.dir==="higher") return newV>oldV;
+  if(bm.dir==="lower") return newV<oldV;
+  // "range": improved if we got closer to the mid of the optimal band
+  var mid=(bm.optLow+bm.optHigh)/2;
+  return Math.abs(newV-mid) < Math.abs(oldV-mid);
+}
+// Classify a change by clinical meaning (not raw delta direction).
+// Returns "improved" | "worsened" | "stable".
+function classifyChange(name, oldV, newV){
+  if(oldV==null||newV==null||isNaN(oldV)||isNaN(newV)) return "stable";
+  var bm=LAB_BIOMARKERS[name]; if(!bm) return "stable";
+  var rank={green:2,yellow:1,red:0,none:-1};
+  var so=labStatus(name,oldV), sn=labStatus(name,newV);
+  // Status change dominates
+  if(rank[sn] > rank[so]) return "improved";
+  if(rank[sn] < rank[so]) return "worsened";
+  // Same status — only count as movement if both are ABNORMAL (yellow/red)
+  // Staying green is "stable" regardless of tiny drift within the band.
+  if(sn==="green") return "stable";
+  return isImproved(bm, oldV, newV) ? "improved" : (oldV===newV ? "stable" : "worsened");
+}
+
+// Return ordered list of visits that have lab data: [{vn, date, data}]
+function labVisitsOrdered(){
+  var out=[]; var vl=S.visitLabs||{};
+  for(var v=1;v<=18;v++){
+    if(vl[v] && vl[v].values && Object.keys(vl[v].values).length){
+      out.push({vn:v, date:vl[v].collectionDate||S.visitDates[v]||"", data:vl[v]});
+    }
+  }
+  out.sort(function(a,b){ return (a.date||"").localeCompare(b.date||""); });
+  return out;
+}
+
+// XLSX PARSING -----------------------------------------------------
+function parseLabXlsx(file){
+  return new Promise(function(resolve,reject){
+    if(typeof XLSX==="undefined"){ reject(new Error("Spreadsheet library still loading — try again in a second.")); return; }
+    var fr=new FileReader();
+    fr.onload=function(ev){
+      try{
+        var wb=XLSX.read(new Uint8Array(ev.target.result),{type:"array",cellDates:true});
+        // Prefer a tab literally named "Blood Chemistry", else first sheet.
+        var sheet=wb.Sheets["Blood Chemistry"];
+        if(!sheet){
+          for(var nm in wb.Sheets){ if(/blood.*chem/i.test(nm)){ sheet=wb.Sheets[nm]; break; } }
+        }
+        if(!sheet) sheet=wb.Sheets[wb.SheetNames[0]];
+        function cell(addr){ var c=sheet[addr]; if(!c) return null; return c.v; }
+        function toISO(v){
+          if(!v) return "";
+          if(v instanceof Date) return v.toISOString().slice(0,10);
+          var s=String(v).trim();
+          var m=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/);
+          if(m){ var y=m[3].length===2?("20"+m[3]):m[3]; return y+"-"+("0"+m[1]).slice(-2)+"-"+("0"+m[2]).slice(-2); }
+          m=s.match(/^(\d{4})-(\d{2})-(\d{2})/); if(m) return m[0];
+          return s;
+        }
+        var result={
+          fileName:file.name,
+          patientName: cell("B2")||"",
+          collectionDate: toISO(cell("B3")),
+          age: cell("E2")||"",
+          sex: cell("I2")||"",
+          values:{},
+          uploadedAt: new Date().toISOString()
+        };
+        Object.keys(LAB_BIOMARKERS).forEach(function(name){
+          var bm=LAB_BIOMARKERS[name];
+          var raw=cell("D"+bm.row);
+          if(raw==null || raw==="") return;
+          var n;
+          if(typeof raw==="number") n=raw;
+          else { var s=String(raw).replace(/[<>]/g,"").replace(/[^\d.\-]/g,""); n=parseFloat(s); }
+          if(!isNaN(n)) result.values[name]=n;
+        });
+        resolve(result);
+      }catch(err){ reject(err); }
+    };
+    fr.onerror=function(){ reject(new Error("Could not read file.")); };
+    fr.readAsArrayBuffer(file);
+  });
+}
+
+// VISIT-CARD UPLOAD WIDGET -----------------------------------------
+function labDrawCardHtml(vn){
+  var data=(S.visitLabs||{})[vn];
+  if(!data || !data.values){
+    return '<div class="lab-draw-card" id="ldc'+vn+'" ondragover="labDragOver(event,'+vn+')" ondragleave="labDragLeave(event,'+vn+')" ondrop="labDrop(event,'+vn+')">'+
+      '<div class="lab-draw-head">'+
+        '<div class="lab-draw-title">📊 Lab Draw <span class="lab-draw-empty">— drop or pick .xlsx from blood-chem tracker</span></div>'+
+        '<div style="display:flex;gap:6px">'+
+          '<button class="lab-upload-btn" onclick="triggerLabUpload('+vn+')">Upload XLSX</button>'+
+          '<input type="file" id="lfi'+vn+'" accept=".xlsx,.xls" style="display:none" onchange="handleLabFile(event,'+vn+')">'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }
+  var vals=data.values||{}; var keys=Object.keys(vals);
+  var counts={green:0,yellow:0,red:0};
+  keys.forEach(function(k){ var st=labStatus(k,vals[k]); if(counts[st]!=null) counts[st]++; });
+  return '<div class="lab-draw-card has-data" id="ldc'+vn+'">'+
+    '<div class="lab-draw-head">'+
+      '<div class="lab-draw-title">📊 Lab Draw · '+escHtml(data.collectionDate||"—")+
+        (data.patientName?' <span style="font-weight:500;color:var(--text-muted);font-size:11px;margin-left:6px">'+escHtml(data.patientName)+'</span>':'')+
+      '</div>'+
+      '<div style="display:flex;gap:6px;flex-wrap:wrap">'+
+        '<button class="lab-mini-btn" onclick="switchPhase(4)">📈 View Trends</button>'+
+        '<button class="lab-mini-btn" onclick="triggerLabUpload('+vn+')">Replace</button>'+
+        '<input type="file" id="lfi'+vn+'" accept=".xlsx,.xls" style="display:none" onchange="handleLabFile(event,'+vn+')">'+
+        '<button class="lab-mini-btn danger" onclick="clearLabDraw('+vn+')" title="Remove">🗑</button>'+
+      '</div>'+
+    '</div>'+
+    '<div class="lab-draw-stats">'+
+      '<span class="lab-stat">'+keys.length+' biomarkers</span>'+
+      '<span class="lab-stat green">● '+counts.green+' optimal</span>'+
+      (counts.yellow?'<span class="lab-stat yellow">● '+counts.yellow+' borderline</span>':'')+
+      (counts.red?'<span class="lab-stat red">● '+counts.red+' out of range</span>':'')+
+    '</div>'+
+  '</div>';
+}
+function triggerLabUpload(vn){ var el=document.getElementById("lfi"+vn); if(el) el.click(); }
+function labDragOver(e,vn){ e.preventDefault(); var el=document.getElementById("ldc"+vn); if(el) el.classList.add("dragging"); }
+function labDragLeave(e,vn){ var el=document.getElementById("ldc"+vn); if(el) el.classList.remove("dragging"); }
+function labDrop(e,vn){ e.preventDefault(); var el=document.getElementById("ldc"+vn); if(el) el.classList.remove("dragging");
+  if(e.dataTransfer.files&&e.dataTransfer.files[0]) ingestLabFile(e.dataTransfer.files[0],vn);
+}
+function handleLabFile(e,vn){ var f=e.target.files&&e.target.files[0]; if(f) ingestLabFile(f,vn); e.target.value=""; }
+function ingestLabFile(file,vn){
+  parseLabXlsx(file).then(function(data){
+    if(!S.visitLabs) S.visitLabs={};
+    S.visitLabs[vn]=data;
+    // If this visit has no date yet, inherit the lab's collection date.
+    if(!S.visitDates[vn] && data.collectionDate){
+      S.visitDates[vn]=data.collectionDate;
+      var di=document.getElementById("vd"+vn); if(di) di.value=data.collectionDate;
+    }
+    refreshLabCard(vn);
+    renderLabsBadge && renderLabsBadge(vn);
+    saveAll();
+  }).catch(function(err){ alert("Couldn't read sheet: "+err.message); });
+}
+function clearLabDraw(vn){
+  if(!confirm("Remove lab data for Visit "+vn+"?")) return;
+  if(S.visitLabs) delete S.visitLabs[vn];
+  refreshLabCard(vn);
+  saveAll();
+}
+function refreshLabCard(vn){
+  var wrap=document.getElementById("labDrawWrap"+vn); if(!wrap) return;
+  wrap.innerHTML=labDrawCardHtml(vn);
+}
+function renderAllLabDraws(){
+  for(var v=1;v<=18;v++){ refreshLabCard(v); }
+}
+
+// LABS TRENDS TAB ---------------------------------------------------
+var _labMiniCharts={}; var _labRadarChart=null; var _labZoomChart=null; var _labCorrChart=null;
+function renderLabsTab(){
+  var host=document.getElementById("phase4"); if(!host) return;
+  var visits=labVisitsOrdered();
+  if(!visits.length){
+    host.innerHTML='<div class="labs-empty"><div class="emoji">🧪</div>'+
+      '<h3>No labs uploaded yet</h3>'+
+      '<p>Go to a visit card and drop the <b>.xlsx</b> file you downloaded from the blood-chemistry tracker. '+
+      'Once you have two or more visits loaded, this tab will come alive with trends, heatmaps, radars, and more.</p></div>';
+    return;
+  }
+  host.innerHTML = labsHeroHtml(visits) + labsScoreboardHtml(visits) +
+    '<div class="labs-view-tabs">'+
+      '<button class="labs-view-tab'+(_labsView==="overview"?" active":"")+'" onclick="setLabsView(\'overview\')">📋 Overview</button>'+
+      '<button class="labs-view-tab'+(_labsView==="trends"?" active":"")+'" onclick="setLabsView(\'trends\')">📈 Trends</button>'+
+      '<button class="labs-view-tab'+(_labsView==="heatmap"?" active":"")+'" onclick="setLabsView(\'heatmap\')">🟩 Heatmap</button>'+
+      '<button class="labs-view-tab'+(_labsView==="radar"?" active":"")+'" onclick="setLabsView(\'radar\')">🕸️ Radar</button>'+
+      '<button class="labs-view-tab'+(_labsView==="movers"?" active":"")+'" onclick="setLabsView(\'movers\')">⚡ Movers</button>'+
+      '<button class="labs-view-tab'+(_labsView==="correlations"?" active":"")+'" onclick="setLabsView(\'correlations\')">🔗 Correlate</button>'+
+    '</div>'+
+    '<div id="labsViewHost"></div>';
+  renderLabsViewPanel();
+}
+function setLabsView(v){ _labsView=v; renderLabsTab(); }
+
+function labsHeroHtml(visits){
+  var first=visits[0], last=visits[visits.length-1];
+  var span="";
+  if(visits.length>1 && first.date && last.date){
+    var d1=new Date(first.date+"T00:00:00"), d2=new Date(last.date+"T00:00:00");
+    var days=Math.round((d2-d1)/86400000);
+    span=" · spanning "+days+" day"+(days===1?"":"s");
+  }
+  return '<div class="labs-hero">'+
+    '<h2>🧪 Labs Timeline</h2>'+
+    '<div class="sub">'+visits.length+' lab draw'+(visits.length===1?"":"s")+
+      ' · '+escHtml(first.date||"?")+(visits.length>1?' → '+escHtml(last.date||"?"):'')+span+'</div>'+
+  '</div>';
+}
+function labsScoreboardHtml(visits){
+  var last=visits[visits.length-1].data.values;
+  var base=visits[0].data.values;
+  var imp=0,wor=0,sta=0,out=0,total=0,newlyImproved=0;
+  Object.keys(last).forEach(function(name){
+    var bm=LAB_BIOMARKERS[name]; if(!bm) return;
+    total++;
+    var st=labStatus(name,last[name]);
+    if(st!=="green") out++;
+    if(base[name]==null) return;
+    var bs=labStatus(name,base[name]);
+    if(bs===st){ sta++; return; }
+    // Improvement = status got better (green > yellow > red)
+    var rank={green:2,yellow:1,red:0,none:-1};
+    if(rank[st]>rank[bs]){ imp++; if(st==="green" && bs!=="green") newlyImproved++; }
+    else wor++;
+  });
+  return '<div class="labs-scoreboard">'+
+    '<div class="score-tile amber"><div class="score-label">Biomarkers tracked</div><div class="score-value">'+total+'</div><div class="score-sub">this visit</div></div>'+
+    '<div class="score-tile green"><div class="score-label">Optimal</div><div class="score-value">'+(total-out)+'</div><div class="score-sub">'+(total?Math.round((total-out)/total*100):0)+'% of markers</div></div>'+
+    '<div class="score-tile red"><div class="score-label">Out of range</div><div class="score-value">'+out+'</div><div class="score-sub">needs attention</div></div>'+
+    (visits.length>1
+      ? '<div class="score-tile green"><div class="score-label">Improved</div><div class="score-value">'+imp+'</div><div class="score-sub">since baseline</div></div>'+
+        '<div class="score-tile red"><div class="score-label">Worsened</div><div class="score-value">'+wor+'</div><div class="score-sub">since baseline</div></div>'+
+        '<div class="score-tile blue"><div class="score-label">Newly optimal</div><div class="score-value">'+newlyImproved+'</div><div class="score-sub">reached range</div></div>'
+      : '')+
+  '</div>';
+}
+
+function renderLabsViewPanel(){
+  var host=document.getElementById("labsViewHost"); if(!host) return;
+  // Destroy prior charts
+  Object.keys(_labMiniCharts).forEach(function(k){ try{ _labMiniCharts[k].destroy(); }catch(e){} });
+  _labMiniCharts={};
+  if(_labRadarChart){ try{ _labRadarChart.destroy(); }catch(e){} _labRadarChart=null; }
+  if(_labCorrChart){ try{ _labCorrChart.destroy(); }catch(e){} _labCorrChart=null; }
+  if(typeof Chart==="undefined"){
+    host.innerHTML='<div class="labs-empty"><div class="emoji">⏳</div><h3>Charts loading…</h3><p>Give it a second and click the tab again.</p></div>';
+    setTimeout(function(){ if(typeof Chart!=="undefined") renderLabsViewPanel(); },400);
+    return;
+  }
+  if(_labsView==="overview") renderOverviewView(host);
+  else if(_labsView==="trends") renderTrendsView(host);
+  else if(_labsView==="heatmap") renderHeatmapView(host);
+  else if(_labsView==="radar") renderRadarView(host);
+  else if(_labsView==="movers") renderMoversView(host);
+  else if(_labsView==="correlations") renderCorrelationsView(host);
+}
+
+// Compute movers list — sorted by "clinical movement" score
+function computeMovers(){
+  var visits=labVisitsOrdered(); if(visits.length<2) return [];
+  var first=visits[0].data.values, last=visits[visits.length-1].data.values;
+  var rows=[];
+  Object.keys(last).forEach(function(name){
+    if(first[name]==null) return;
+    var bm=LAB_BIOMARKERS[name]; if(!bm) return;
+    var a=+first[name], b=+last[name];
+    if(a===0) return;
+    var pct=((b-a)/Math.abs(a))*100;
+    var klass=classifyChange(name,a,b); // improved | worsened | stable
+    rows.push({name:name, first:a, last:b, pct:pct, improved:klass==="improved", klass:klass, bm:bm,
+      statusFrom:labStatus(name,a), statusTo:labStatus(name,b)});
+  });
+  return rows;
+}
+
+function renderOverviewView(host){
+  var movers=computeMovers();
+  var imp=movers.filter(function(r){return r.klass==="improved";}).sort(function(a,b){return Math.abs(b.pct)-Math.abs(a.pct);}).slice(0,7);
+  var wor=movers.filter(function(r){return r.klass==="worsened";}).sort(function(a,b){return Math.abs(b.pct)-Math.abs(a.pct);}).slice(0,7);
+  function rowHtml(r){
+    var sign=r.pct>0?"+":"";
+    var cls=r.improved?"good":"bad";
+    var arrow=r.pct>0?"▲":r.pct<0?"▼":"●";
+    return '<div class="mover-row" onclick="openLabZoom(\''+r.name.replace(/'/g,"\\'")+'\')">'+
+      '<div><div class="mover-name">'+escHtml(r.name)+'</div>'+
+        '<div class="mover-val">'+fmtNum(r.first)+' → <b>'+fmtNum(r.last)+'</b> '+escHtml(r.bm.unit||"")+'</div></div>'+
+      '<div class="mover-delta '+cls+'">'+arrow+' '+sign+r.pct.toFixed(1)+'%</div>'+
+    '</div>';
+  }
+  host.innerHTML='<div class="mover-list">'+
+    '<div class="mover-col"><h4>🚀 Top improvements</h4>'+
+      (imp.length?imp.map(rowHtml).join(""):'<div style="font-size:12px;color:var(--text-muted)">Upload two or more visits to see movement.</div>')+
+    '</div>'+
+    '<div class="mover-col"><h4>⚠️ Needs attention</h4>'+
+      (wor.length?wor.map(rowHtml).join(""):'<div style="font-size:12px;color:var(--text-muted)">Nothing moving in the wrong direction — nice.</div>')+
+    '</div>'+
+  '</div>';
+}
+
+function renderMoversView(host){
+  var rows=computeMovers().sort(function(a,b){ return Math.abs(b.pct)-Math.abs(a.pct); });
+  if(!rows.length){ host.innerHTML='<div class="labs-empty"><div class="emoji">📊</div><h3>Need at least 2 visits</h3><p>Upload a second lab draw to compute change.</p></div>'; return; }
+  function rowHtml(r){
+    var sign=r.pct>0?"+":"";
+    var cls=r.improved?"good":"bad";
+    var arrow=r.pct>0?"▲":r.pct<0?"▼":"●";
+    return '<div class="mover-row" onclick="openLabZoom(\''+r.name.replace(/'/g,"\\'")+'\')">'+
+      '<div><div class="mover-name">'+escHtml(r.name)+'<span class="trend-status-dot" style="background:'+labColor(r.statusTo)+';margin-left:8px"></span></div>'+
+        '<div class="mover-val">'+fmtNum(r.first)+' → <b>'+fmtNum(r.last)+'</b> '+escHtml(r.bm.unit||"")+' · '+escHtml(r.bm.section)+'</div></div>'+
+      '<div class="mover-delta '+cls+'">'+arrow+' '+sign+r.pct.toFixed(1)+'%</div>'+
+    '</div>';
+  }
+  host.innerHTML='<div class="mover-col"><h4>All biomarkers by % change (baseline → latest)</h4>'+rows.map(rowHtml).join("")+'</div>';
+}
+
+function fmtNum(n){ if(n==null||isNaN(n)) return "—"; n=+n;
+  if(Math.abs(n)>=100) return n.toFixed(0);
+  if(Math.abs(n)>=10) return n.toFixed(1);
+  return n.toFixed(2);
+}
+
+function renderTrendsView(host){
+  var visits=labVisitsOrdered();
+  // Filter bar
+  var sections=["All"].concat(LAB_SECTION_ORDER);
+  var filterHtml='<div class="labs-filter-bar">'+
+    '<input class="labs-search" id="lblSearch" placeholder="Search biomarker…" value="'+escHtml(_labsFilter.query)+'">'+
+    sections.map(function(s){return '<button class="labs-section-chip'+(_labsFilter.section===s?" active":"")+'" onclick="setLabsSection(\''+s.replace(/'/g,"\\'")+'\')">'+escHtml(s)+'</button>';}).join("")+
+  '</div><div class="trend-grid" id="trendGrid"></div>';
+  host.innerHTML=filterHtml;
+  var si=document.getElementById("lblSearch");
+  if(si) si.addEventListener("input",function(){ _labsFilter.query=si.value; renderTrendCards(); });
+  renderTrendCards();
+}
+function setLabsSection(s){ _labsFilter.section=s; renderTrendsView(document.getElementById("labsViewHost")); }
+function renderTrendCards(){
+  var grid=document.getElementById("trendGrid"); if(!grid) return;
+  var visits=labVisitsOrdered();
+  var last=visits[visits.length-1].data.values;
+  var q=(_labsFilter.query||"").toLowerCase();
+  var names=Object.keys(LAB_BIOMARKERS).filter(function(n){
+    if(last[n]==null) return false;
+    if(_labsFilter.section!=="All" && LAB_BIOMARKERS[n].section!==_labsFilter.section) return false;
+    if(q && n.toLowerCase().indexOf(q)===-1) return false;
+    return true;
+  });
+  // Order: abnormal first, then by section
+  names.sort(function(a,b){
+    var sa=labStatus(a,last[a]), sb=labStatus(b,last[b]);
+    var rank={red:0,yellow:1,green:2,none:3};
+    if(rank[sa]!==rank[sb]) return rank[sa]-rank[sb];
+    return a.localeCompare(b);
+  });
+  grid.innerHTML=names.map(function(n){ return trendCardHtml(n, visits); }).join("") ||
+    '<div class="labs-empty" style="grid-column:1/-1"><div class="emoji">🔍</div><h3>No biomarkers match</h3><p>Try clearing the filter or uploading more visits.</p></div>';
+  // Now draw sparklines
+  setTimeout(function(){
+    names.forEach(function(n){ drawTrendMini(n, visits); });
+  },10);
+}
+function trendCardHtml(name, visits){
+  var bm=LAB_BIOMARKERS[name];
+  var last=visits[visits.length-1].data.values[name];
+  var first=visits[0].data.values[name];
+  var st=labStatus(name,last);
+  var deltaHtml="";
+  if(visits.length>1 && first!=null){
+    var pct=((last-first)/Math.abs(first||1))*100;
+    var improved=isImproved(bm,+first,+last);
+    var cls=pct>0?(improved?"up good":"up bad"):pct<0?(improved?"down good":"down bad"):"flat";
+    var sign=pct>0?"+":"";
+    deltaHtml='<div class="trend-delta '+cls+'">'+(pct>0?"▲":pct<0?"▼":"●")+" "+sign+pct.toFixed(1)+'%</div>';
+  }
+  var id="tmc_"+name.replace(/[^a-z0-9]/gi,"_");
+  return '<div class="trend-card" onclick="openLabZoom(\''+name.replace(/'/g,"\\'")+'\')">'+
+    '<div class="trend-head">'+
+      '<div><div class="trend-name"><span class="trend-status-dot" style="background:'+labColor(st)+'"></span>'+escHtml(name)+'</div>'+
+        '<div class="trend-section">'+escHtml(bm.section)+'</div></div>'+
+      '<div style="text-align:right"><div class="trend-latest">'+fmtNum(last)+'<span class="trend-unit">'+escHtml(bm.unit||"")+'</span></div>'+deltaHtml+'</div>'+
+    '</div>'+
+    '<div class="trend-canvas-wrap"><canvas id="'+id+'"></canvas></div>'+
+    '<div class="trend-range">Optimal: '+fmtNum(bm.optLow)+'–'+fmtNum(bm.optHigh)+' '+escHtml(bm.unit||"")+'</div>'+
+  '</div>';
+}
+function drawTrendMini(name, visits){
+  var id="tmc_"+name.replace(/[^a-z0-9]/gi,"_");
+  var canvas=document.getElementById(id); if(!canvas) return;
+  var bm=LAB_BIOMARKERS[name];
+  var pts=[], labels=[], colors=[];
+  visits.forEach(function(v){
+    var val=v.data.values[name];
+    if(val!=null){ pts.push(val); labels.push(v.date||("V"+v.vn)); colors.push(labColor(labStatus(name,val))); }
+  });
+  // Y-axis min/max includes optimal band
+  var allVals=pts.concat([bm.optLow,bm.optHigh]);
+  var mn=Math.min.apply(null,allVals), mx=Math.max.apply(null,allVals);
+  var pad=(mx-mn)*0.15 || Math.abs(mx)*0.1 || 1; mn-=pad; mx+=pad;
+  _labMiniCharts[id]=new Chart(canvas,{
+    type:"line",
+    data:{labels:labels, datasets:[{
+      data:pts,
+      borderColor:"#C8820A", borderWidth:2, tension:.3,
+      pointRadius:3, pointBackgroundColor:colors, pointBorderColor:colors,
+      fill:false
+    }]},
+    options:{
+      responsive:true, maintainAspectRatio:false, animation:false,
+      plugins:{legend:{display:false}, tooltip:{enabled:false}},
+      scales:{
+        x:{display:false},
+        y:{display:false, min:mn, max:mx}
+      },
+      elements:{line:{borderJoinStyle:"round"}}
+    },
+    plugins:[{
+      id:"optBand",
+      beforeDatasetsDraw:function(chart){
+        var ctx=chart.ctx, yAxis=chart.scales.y, xAxis=chart.scales.x;
+        var yLo=yAxis.getPixelForValue(bm.optLow), yHi=yAxis.getPixelForValue(bm.optHigh);
+        ctx.save(); ctx.fillStyle="rgba(34,197,94,.12)";
+        ctx.fillRect(xAxis.left, Math.min(yLo,yHi), xAxis.right-xAxis.left, Math.abs(yHi-yLo));
+        ctx.restore();
+      }
+    }]
+  });
+}
+
+function renderHeatmapView(host){
+  var visits=labVisitsOrdered();
+  // Group by section
+  var bySection={};
+  Object.keys(LAB_BIOMARKERS).forEach(function(n){
+    // only include if at least one visit has this marker
+    var any=false; for(var i=0;i<visits.length;i++){ if(visits[i].data.values[n]!=null){ any=true; break; } }
+    if(!any) return;
+    var sec=LAB_BIOMARKERS[n].section;
+    if(!bySection[sec]) bySection[sec]=[];
+    bySection[sec].push(n);
+  });
+  var secs=LAB_SECTION_ORDER.filter(function(s){return bySection[s];});
+  Object.keys(bySection).forEach(function(s){ if(secs.indexOf(s)===-1) secs.push(s); });
+
+  var html='<div class="hm-wrap"><table class="hm-table"><thead><tr><th style="text-align:right">Biomarker</th>'+
+    visits.map(function(v){return '<th>'+escHtml((v.date||"V"+v.vn).slice(5))+'<br><span style="font-weight:400;color:var(--text-dim)">V'+v.vn+'</span></th>';}).join("")+
+    '<th>Opt</th></tr></thead><tbody>';
+  secs.forEach(function(sec){
+    html+='<tr><td class="hm-section" colspan="'+(visits.length+2)+'">'+escHtml(sec)+'</td></tr>';
+    bySection[sec].forEach(function(name){
+      var bm=LAB_BIOMARKERS[name];
+      html+='<tr><td class="hm-name" title="'+escHtml(name)+'">'+escHtml(name)+'</td>';
+      visits.forEach(function(v){
+        var val=v.data.values[name];
+        if(val==null){ html+='<td><div class="hm-cell c-none">—</div></td>'; }
+        else{
+          var st=labStatus(name,val);
+          html+='<td><div class="hm-cell c-'+st+'" onclick="openLabZoom(\''+name.replace(/'/g,"\\'")+'\')" title="'+escHtml(name)+': '+fmtNum(val)+' '+escHtml(bm.unit||"")+'">'+fmtNum(val)+'</div></td>';
+        }
+      });
+      html+='<td style="font-size:10px;color:var(--text-muted);padding:0 6px;white-space:nowrap">'+fmtNum(bm.optLow)+'–'+fmtNum(bm.optHigh)+'</td></tr>';
+    });
+  });
+  html+='</tbody></table></div>';
+  host.innerHTML=html;
+}
+
+// Radar — system-level scores where 1.0 = all markers optimal, lower = more abnormal.
+function computeSystemScore(values, axis){
+  var present=0, score=0;
+  axis.markers.forEach(function(m){
+    var v=values[m]; if(v==null) return;
+    present++;
+    var st=labStatus(m,v);
+    score += (st==="green"?1:st==="yellow"?0.6:0.2);
+  });
+  if(!present) return null;
+  return score/present; // 0..1
+}
+function renderRadarView(host){
+  var visits=labVisitsOrdered();
+  host.innerHTML='<div class="radar-wrap">'+
+    '<div class="radar-canvas-wrap"><canvas id="labRadar"></canvas></div>'+
+    '<div>'+
+      '<h4 style="font-size:13px;font-weight:800;color:var(--text-secondary);margin-bottom:8px">System health overlay</h4>'+
+      '<div class="radar-legend" id="radarLegend"></div>'+
+      '<div class="radar-help">Each axis aggregates the biomarkers in that system. '+
+        'Outer edge = all markers optimal, center = all out of range. Overlay shows baseline vs. latest.</div>'+
+    '</div>'+
+  '</div>';
+  var labels=LAB_RADAR_AXES.map(function(a){return a.label;});
+  function scoreSet(vals){ return LAB_RADAR_AXES.map(function(a){ var s=computeSystemScore(vals,a); return s==null?0:s; }); }
+  var first=visits[0], last=visits[visits.length-1];
+  var datasets=[];
+  if(visits.length>1){
+    datasets.push({
+      label:"Baseline ("+(first.date||"V"+first.vn)+")",
+      data:scoreSet(first.data.values),
+      backgroundColor:"rgba(148,163,184,.15)", borderColor:"#94a3b8", borderWidth:2, pointBackgroundColor:"#94a3b8"
+    });
+  }
+  datasets.push({
+    label:"Latest ("+(last.date||"V"+last.vn)+")",
+    data:scoreSet(last.data.values),
+    backgroundColor:"rgba(200,130,10,.22)", borderColor:"#C8820A", borderWidth:2, pointBackgroundColor:"#D4A843"
+  });
+  var c=document.getElementById("labRadar");
+  _labRadarChart=new Chart(c,{
+    type:"radar",
+    data:{labels:labels, datasets:datasets},
+    options:{
+      responsive:true, maintainAspectRatio:false, animation:false,
+      plugins:{legend:{labels:{color:"#B8BDC8",font:{size:11,weight:"700"}}}},
+      scales:{r:{
+        min:0, max:1,
+        angleLines:{color:"rgba(255,255,255,.08)"},
+        grid:{color:"rgba(255,255,255,.08)"},
+        pointLabels:{color:"#F0F2F5",font:{size:11,weight:"700"}},
+        ticks:{display:false, stepSize:.25}
+      }}
+    }
+  });
+  var leg=document.getElementById("radarLegend");
+  leg.innerHTML=datasets.map(function(ds){
+    return '<div class="radar-chip"><div class="radar-dot" style="background:'+ds.borderColor+'"></div>'+escHtml(ds.label)+'</div>';
+  }).join("");
+}
+
+function renderCorrelationsView(host){
+  var visits=labVisitsOrdered();
+  var names=Object.keys(LAB_BIOMARKERS).filter(function(n){
+    return visits.some(function(v){return v.data.values[n]!=null;});
+  });
+  function opts(sel){ return names.map(function(n){return '<option value="'+escHtml(n)+'"'+(n===sel?' selected':'')+'>'+escHtml(n)+'</option>';}).join(""); }
+  var defA=names.indexOf("Hemoglobin A1c")>=0?"Hemoglobin A1c":names[0];
+  var defB=names.indexOf("Triglycerides")>=0?"Triglycerides":(names[1]||names[0]);
+  host.innerHTML='<div class="corr-wrap">'+
+    '<div class="corr-picker">'+
+      '<span style="font-size:12px;font-weight:700;color:var(--text-muted)">Overlay:</span>'+
+      '<select id="corrA">'+opts(defA)+'</select>'+
+      '<span style="color:var(--text-muted)">vs.</span>'+
+      '<select id="corrB">'+opts(defB)+'</select>'+
+    '</div>'+
+    '<div class="corr-canvas-wrap"><canvas id="labCorr"></canvas></div>'+
+    '<div style="font-size:11px;color:var(--text-muted);margin-top:10px;line-height:1.6">Plots both markers over time on dual y-axes. Useful for showing the patient how, say, A1c fell as triglycerides dropped — the metabolic story told on one chart.</div>'+
+  '</div>';
+  function draw(){
+    var a=document.getElementById("corrA").value, b=document.getElementById("corrB").value;
+    var bmA=LAB_BIOMARKERS[a], bmB=LAB_BIOMARKERS[b];
+    var labels=visits.map(function(v){return v.date||"V"+v.vn;});
+    var da=visits.map(function(v){return v.data.values[a]==null?null:v.data.values[a];});
+    var db=visits.map(function(v){return v.data.values[b]==null?null:v.data.values[b];});
+    if(_labCorrChart){ try{_labCorrChart.destroy();}catch(e){} }
+    _labCorrChart=new Chart(document.getElementById("labCorr"),{
+      type:"line",
+      data:{labels:labels, datasets:[
+        {label:a+" ("+(bmA.unit||"")+")", data:da, borderColor:"#C8820A", backgroundColor:"rgba(200,130,10,.15)", yAxisID:"yA", tension:.3, spanGaps:true, pointRadius:4},
+        {label:b+" ("+(bmB.unit||"")+")", data:db, borderColor:"#3b82f6", backgroundColor:"rgba(59,130,246,.15)", yAxisID:"yB", tension:.3, spanGaps:true, pointRadius:4}
+      ]},
+      options:{
+        responsive:true, maintainAspectRatio:false, animation:false,
+        plugins:{legend:{labels:{color:"#B8BDC8",font:{weight:"700"}}}, tooltip:{mode:"index",intersect:false}},
+        interaction:{mode:"index",intersect:false},
+        scales:{
+          x:{ticks:{color:"#8A9099"},grid:{color:"rgba(255,255,255,.05)"}},
+          yA:{position:"left",ticks:{color:"#D4A843"},grid:{color:"rgba(255,255,255,.05)"},title:{display:true,text:a,color:"#D4A843",font:{weight:"700"}}},
+          yB:{position:"right",ticks:{color:"#60a5fa"},grid:{drawOnChartArea:false},title:{display:true,text:b,color:"#60a5fa",font:{weight:"700"}}}
+        }
+      }
+    });
+  }
+  document.getElementById("corrA").addEventListener("change",draw);
+  document.getElementById("corrB").addEventListener("change",draw);
+  draw();
+}
+
+// Lab zoom modal ---------------------------------------------------
+function openLabZoom(name){
+  var bm=LAB_BIOMARKERS[name]; if(!bm) return;
+  var visits=labVisitsOrdered();
+  document.getElementById("lzTitle").textContent=name;
+  document.getElementById("lzSection").textContent=bm.section+" · optimal "+fmtNum(bm.optLow)+"–"+fmtNum(bm.optHigh)+" "+(bm.unit||"");
+  var last=visits.length?visits[visits.length-1].data.values[name]:null;
+  var first=visits.length?visits[0].data.values[name]:null;
+  var meta="";
+  if(last!=null){
+    var st=labStatus(name,last);
+    meta+='<span class="lab-stat '+st+'">Latest '+fmtNum(last)+' '+escHtml(bm.unit||"")+'</span>';
+  }
+  if(visits.length>1 && first!=null && last!=null){
+    var pct=((last-first)/Math.abs(first||1))*100;
+    var sign=pct>0?"+":"";
+    meta+='<span class="lab-stat">Δ '+sign+pct.toFixed(1)+'% since baseline</span>';
+  }
+  document.getElementById("lzMeta").innerHTML=meta;
+
+  // Build chart
+  if(_labZoomChart){ try{_labZoomChart.destroy();}catch(e){} }
+  var labels=[], pts=[], colors=[];
+  visits.forEach(function(v){ var val=v.data.values[name]; if(val!=null){ labels.push(v.date||"V"+v.vn); pts.push(+val); colors.push(labColor(labStatus(name,val))); } });
+  var mn=Math.min.apply(null,pts.concat([bm.optLow,bm.optHigh])), mx=Math.max.apply(null,pts.concat([bm.optLow,bm.optHigh]));
+  var pad=(mx-mn)*0.15 || Math.abs(mx)*0.1 || 1; mn-=pad; mx+=pad;
+  _labZoomChart=new Chart(document.getElementById("lzChart"),{
+    type:"line",
+    data:{labels:labels, datasets:[{
+      label:name, data:pts,
+      borderColor:"#C8820A", borderWidth:3, tension:.3,
+      pointRadius:6, pointBackgroundColor:colors, pointBorderColor:colors,
+      fill:false
+    }]},
+    options:{
+      responsive:true, maintainAspectRatio:false, animation:false,
+      plugins:{legend:{display:false}, tooltip:{callbacks:{label:function(ctx){return fmtNum(ctx.parsed.y)+" "+(bm.unit||"");}}}},
+      scales:{
+        x:{ticks:{color:"#8A9099"},grid:{color:"rgba(255,255,255,.05)"}},
+        y:{min:mn,max:mx,ticks:{color:"#8A9099"},grid:{color:"rgba(255,255,255,.05)"},title:{display:true,text:bm.unit||"",color:"#8A9099"}}
+      }
+    },
+    plugins:[{
+      id:"optBandZoom",
+      beforeDatasetsDraw:function(chart){
+        var ctx=chart.ctx, yAxis=chart.scales.y, xAxis=chart.scales.x;
+        var yLo=yAxis.getPixelForValue(bm.optLow), yHi=yAxis.getPixelForValue(bm.optHigh);
+        ctx.save(); ctx.fillStyle="rgba(34,197,94,.13)";
+        ctx.fillRect(xAxis.left, Math.min(yLo,yHi), xAxis.right-xAxis.left, Math.abs(yHi-yLo));
+        // draw dashed optimal lines
+        ctx.strokeStyle="rgba(34,197,94,.4)"; ctx.setLineDash([4,4]); ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(xAxis.left,yLo); ctx.lineTo(xAxis.right,yLo); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(xAxis.left,yHi); ctx.lineTo(xAxis.right,yHi); ctx.stroke();
+        ctx.restore();
+      }
+    }]
+  });
+
+  // Build visit table
+  var tbl='<thead><tr><th>Visit</th><th>Date</th><th>Value</th><th>Status</th><th>Δ from prior</th></tr></thead><tbody>';
+  var prev=null;
+  visits.forEach(function(v){
+    var val=v.data.values[name];
+    var st=labStatus(name,val);
+    var deltaCell="—";
+    if(prev!=null && val!=null){
+      var d=val-prev; var sign=d>0?"+":""; deltaCell=sign+fmtNum(d);
+    }
+    tbl+='<tr><td>V'+v.vn+'</td><td>'+escHtml(v.date||"—")+'</td>'+
+      '<td><b>'+(val==null?"—":fmtNum(val)+" "+escHtml(bm.unit||""))+'</b></td>'+
+      '<td><span class="trend-status-dot" style="background:'+labColor(st)+'"></span>'+(st==="none"?"—":st)+'</td>'+
+      '<td>'+deltaCell+'</td></tr>';
+    if(val!=null) prev=val;
+  });
+  tbl+='</tbody>';
+  document.getElementById("lzTable").innerHTML=tbl;
+  document.getElementById("lzOverlay").classList.add("show");
+}
+function closeLabZoom(){ document.getElementById("lzOverlay").classList.remove("show"); if(_labZoomChart){ try{_labZoomChart.destroy();}catch(e){} _labZoomChart=null; } }
+
+// Demo seeder: 3-visit metabolic turnaround story — for showing off the Trends tab.
+// Trigger with ?demo=1 in the URL (once; won't re-seed if already present).
+function seedDemoPatient(){
+  var DEMO_ID="pt_demo_maria_chen";
+  // Skip if already there
+  var idx=loadIndex();
+  if(idx.some(function(p){return p.id===DEMO_ID;})) { currentPatientId=DEMO_ID; openPatient(DEMO_ID); return; }
+  currentPatientId=DEMO_ID;
+  S=blankState();
+  S.patientInfo={
+    name:"Maria Chen (Demo)", provider:"Dr. Todd Anderson", status:"active",
+    dob:"1978-06-12", mrn:"MHW-DEMO-001", email:"demo@example.com",
+    start:"2025-10-15", collection:""
+  };
+  S.visitDates={1:"2025-10-15",2:"2026-01-20",3:"2026-04-10"};
+  S.visitNotes={
+    1:"Initial consult. c/o fatigue, weight gain (+22 lb over 18 mo), brain fog, cold intolerance. Labs show metabolic syndrome pattern + subclinical hypothyroid picture. Starting elimination diet + targeted supplementation.",
+    2:"90-day follow-up. Reports 40% energy improvement, 8 lb weight loss. Sleep quality markedly better. Bowel regularity restored. Continuing protocol with T3 support adjustment.",
+    3:"6-month check. Patient reports 'feeling like myself for the first time in years.' Lost 18 lb total, exercising 4x/week. Inflammation markers normalized. Ready to reduce supplement load."
+  };
+  S.visitAssessment={
+    1:"Insulin resistance with secondary hypothyroid presentation. Vitamin D severely deficient. Elevated hs-CRP and homocysteine suggest low-grade systemic inflammation.",
+    2:"Responding well to protocol. A1c trending down, thyroid conversion improving (rT3 dropping). Ferritin moving into functional range.",
+    3:"Full metabolic recovery. All systems in functional optimal range. Inflammation resolved."
+  };
+  S.visitPlan={
+    1:"Elimination diet (grain/dairy/sugar) x 90d. Vit D3 10K IU, Mg glycinate 400mg, Omega-3 2g, B-complex, Berberine 500mg TID. Recheck in 90d.",
+    2:"Reintroduce limited whole grains. Add T3 support (thyroid glandular). Maintain Vit D at 5K IU. Recheck in 90d.",
+    3:"Maintenance protocol: reduced supplement stack. Continue exercise. Annual labs only."
+  };
+  S.visitLabs={
+    1:{collectionDate:"2025-10-15",patientName:"Maria Chen (Demo)",values:{
+      "Glucose":108,"Hemoglobin A1c":6.2,"Insulin":14,
+      "Cholesterol, Total":248,"Triglycerides":195,"LDL Chol Calc (NIH)":162,"HDL Cholesterol":36,"VLDL Cholesterol Cal":39,
+      "Protein, Total":7.1,"Albumin":4.0,"Globulin, Total":3.1,"Uric Acid":6.8,
+      "eGFR":78,"BUN":22,"Creatinine":1.3,"BUN/Creatinine Ratio":17,
+      "AST (SGOT)":44,"ALT (SGPT)":58,"GGT":42,"LDH":165,"Alkaline Phosphatase":115,"Bilirubin, Total":0.9,
+      "Sodium":138,"Potassium":4.1,"Chloride":102,"Carbon Dioxide, Total":24,"Calcium":9.5,"Magnesium":1.7,"Phosphorus":3.4,
+      "Iron":58,"Ferritin":18,"Iron Bind.Cap.(TIBC)":385,"UIBC":327,
+      "Vitamin D, 25-Hydroxy":19,"Homocyst(e)ine":12.5,"C-Reactive Protein, Cardiac":3.8,
+      "TSH":4.2,"T4,Free(Direct)":0.9,"Triiodothyronine (T3), Free":2.6,"Reverse T3, Serum":24,"Thyroid Peroxidase (TPO) Ab":45,
+      "Hemoglobin":12.6,"Hematocrit":37,"RBC":4.0,"MCV":89,"MCH":30,"MCHC":33,"RDW":14.2,"Platelets":315,"WBC":9.4,
+      "Neutrophils":65,"Lymphs":22,"Monocytes":9,"Eos":3,"Basos":1
+    }},
+    2:{collectionDate:"2026-01-20",patientName:"Maria Chen (Demo)",values:{
+      "Glucose":94,"Hemoglobin A1c":5.7,"Insulin":9,
+      "Cholesterol, Total":212,"Triglycerides":138,"LDL Chol Calc (NIH)":132,"HDL Cholesterol":46,"VLDL Cholesterol Cal":28,
+      "Protein, Total":7.0,"Albumin":4.3,"Globulin, Total":2.7,"Uric Acid":5.6,
+      "eGFR":86,"BUN":18,"Creatinine":1.05,"BUN/Creatinine Ratio":17,
+      "AST (SGOT)":31,"ALT (SGPT)":36,"GGT":22,"LDH":158,"Alkaline Phosphatase":96,"Bilirubin, Total":0.8,
+      "Sodium":139,"Potassium":4.2,"Chloride":103,"Carbon Dioxide, Total":26,"Calcium":9.6,"Magnesium":2.0,"Phosphorus":3.6,
+      "Iron":75,"Ferritin":48,"Iron Bind.Cap.(TIBC)":330,"UIBC":255,
+      "Vitamin D, 25-Hydroxy":42,"Homocyst(e)ine":8.8,"C-Reactive Protein, Cardiac":1.9,
+      "TSH":2.9,"T4,Free(Direct)":1.2,"Triiodothyronine (T3), Free":3.1,"Reverse T3, Serum":18,"Thyroid Peroxidase (TPO) Ab":22,
+      "Hemoglobin":13.6,"Hematocrit":40,"RBC":4.4,"MCV":90,"MCH":30.5,"MCHC":33.5,"RDW":13.4,"Platelets":288,"WBC":7.6,
+      "Neutrophils":58,"Lymphs":30,"Monocytes":8,"Eos":3,"Basos":1
+    }},
+    3:{collectionDate:"2026-04-10",patientName:"Maria Chen (Demo)",values:{
+      "Glucose":84,"Hemoglobin A1c":5.0,"Insulin":4,
+      "Cholesterol, Total":182,"Triglycerides":76,"LDL Chol Calc (NIH)":105,"HDL Cholesterol":62,"VLDL Cholesterol Cal":15,
+      "Protein, Total":7.2,"Albumin":4.5,"Globulin, Total":2.6,"Uric Acid":4.4,
+      "eGFR":96,"BUN":14,"Creatinine":0.9,"BUN/Creatinine Ratio":15,
+      "AST (SGOT)":21,"ALT (SGPT)":22,"GGT":13,"LDH":155,"Alkaline Phosphatase":84,"Bilirubin, Total":0.7,
+      "Sodium":140,"Potassium":4.3,"Chloride":103,"Carbon Dioxide, Total":27,"Calcium":9.7,"Magnesium":2.2,"Phosphorus":3.6,
+      "Iron":98,"Ferritin":82,"Iron Bind.Cap.(TIBC)":305,"UIBC":207,
+      "Vitamin D, 25-Hydroxy":68,"Homocyst(e)ine":6.2,"C-Reactive Protein, Cardiac":0.6,
+      "TSH":1.5,"T4,Free(Direct)":1.4,"Triiodothyronine (T3), Free":3.6,"Reverse T3, Serum":11,"Thyroid Peroxidase (TPO) Ab":8,
+      "Hemoglobin":14.1,"Hematocrit":42,"RBC":4.6,"MCV":91,"MCH":30.8,"MCHC":34,"RDW":12.6,"Platelets":260,"WBC":6.2,
+      "Neutrophils":52,"Lymphs":36,"Monocytes":7,"Eos":2,"Basos":1
+    }}
+  };
+  // Some subjective symptom row data to make the upper table look lived-in
+  S.symLabels={1:"Fatigue",2:"Brain fog",3:"Weight gain",4:"Cold intolerance"};
+  S.symptoms={
+    "1_1":"red","1_2":"red","1_3":"red","1_4":"red","1_5":"red","1_6":"red","1_7":"red","1_8":"red",
+    "1_9":"yellow","1_10":"yellow","1_11":"yellow","1_12":"yellow","1_13":"yellow","1_14":"yellow","1_15":"yellow",
+    "1_16":"yellow","1_17":"yellow","1_18":"yellow","1_19":"green","1_20":"green","1_21":"green",
+    "2_1":"red","2_2":"red","2_3":"red","2_4":"red","2_5":"red","2_6":"red","2_7":"red","2_8":"yellow",
+    "2_9":"yellow","2_10":"yellow","2_11":"yellow","2_12":"yellow","2_13":"green","2_14":"green","2_15":"green",
+    "2_16":"green","2_17":"green","2_18":"green","2_19":"green","2_20":"green","2_21":"green",
+    "3_1":"red","3_2":"red","3_3":"red","3_4":"red","3_5":"red","3_6":"yellow","3_7":"yellow","3_8":"yellow",
+    "3_9":"yellow","3_10":"yellow","3_11":"green","3_12":"green","3_13":"green","3_14":"green","3_15":"green",
+    "3_16":"green","3_17":"green","3_18":"green","3_19":"green","3_20":"green","3_21":"green",
+    "4_1":"red","4_2":"red","4_3":"red","4_4":"red","4_5":"yellow","4_6":"yellow","4_7":"yellow","4_8":"yellow",
+    "4_9":"yellow","4_10":"green","4_11":"green","4_12":"green","4_13":"green","4_14":"green","4_15":"green",
+    "4_16":"green","4_17":"green","4_18":"green","4_19":"green","4_20":"green","4_21":"green"
+  };
+  S.symVisited={"1_1":true,"1_13":true,"1_25":true};
+  updateIndex(DEMO_ID, S.patientInfo);
+  _LS.setItem(PT_PREFIX+DEMO_ID, JSON.stringify(S));
+  openPatient(DEMO_ID);
+}
+// Check URL for ?demo=1 and auto-seed after password unlock.
+(function(){
+  try{
+    if(/[?&]demo=1/.test(location.search)){
+      // Auto-unlock + seed once DOM is ready
+      document.addEventListener("DOMContentLoaded",function(){
+        setTimeout(function(){
+          var pwInput=document.getElementById("pwInput");
+          if(pwInput){
+            pwInput.value=(typeof DEFAULT_PW!=="undefined"?DEFAULT_PW:"Momentum1!");
+            checkPw();
+          }
+          setTimeout(function(){
+            seedDemoPatient();
+            setTimeout(function(){ switchPhase(4); },300);
+          },200);
+        },100);
+      });
+    }
+  }catch(e){}
+})();
+
 
 function renderVJumpStrip(){
   var strip=document.getElementById("vjumpStrip"); if(!strip) return;
@@ -2922,6 +3941,12 @@ function buildVisitCard(vn){
     secGrid.appendChild(labCard);
   })();
   div.appendChild(secGrid);
+
+  // Lab draw card (XLSX upload from blood-chem tracker)
+  var labDrawWrap=document.createElement("div");
+  labDrawWrap.id="labDrawWrap"+vn;
+  labDrawWrap.innerHTML=labDrawCardHtml(vn);
+  div.appendChild(labDrawWrap);
 
   var no=document.createElement("div"); no.className="visit-notes";
   no.innerHTML='<label style="display:flex;align-items:center;gap:6px">Visit Notes <span id="labsBadge'+vn+'"></span></label>'+
