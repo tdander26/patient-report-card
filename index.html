@@ -746,6 +746,45 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg-
 .corr-picker select:focus{border-color:var(--amber)}
 .corr-canvas-wrap{position:relative;height:380px}
 
+/* Star buttons + case studies */
+.star-btn{background:rgba(255,255,255,.06);border:1px solid var(--border-dim);color:var(--text-muted);padding:6px 12px;border-radius:8px;font-weight:700;cursor:pointer;font-family:inherit;font-size:12px;transition:all .15s;display:inline-flex;align-items:center;gap:5px}
+.star-btn:hover{background:rgba(234,179,8,.12);border-color:rgba(234,179,8,.4);color:#fcd34d}
+.star-btn.is-starred{background:rgba(234,179,8,.18);border-color:rgba(234,179,8,.5);color:#fcd34d}
+.star-btn.is-starred:hover{background:rgba(234,179,8,.28)}
+.trend-star{position:absolute;top:8px;right:10px;width:24px;height:24px;border-radius:50%;background:rgba(0,0,0,.35);border:none;color:#5a606b;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:all .15s;z-index:2}
+.trend-card{position:relative}
+.trend-card:hover .trend-star{opacity:1}
+.trend-star.is-starred{opacity:1;color:#fcd34d;background:rgba(234,179,8,.18)}
+.trend-star:hover{color:#fcd34d;background:rgba(234,179,8,.25);transform:scale(1.15)}
+
+.cs-empty{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-card);padding:60px 20px;text-align:center;color:var(--text-muted)}
+.cs-empty .emoji{font-size:48px;margin-bottom:14px}
+.cs-empty h3{font-size:16px;font-weight:700;color:var(--text-secondary);margin-bottom:6px}
+.cs-empty p{font-size:13px;max-width:520px;margin:0 auto;line-height:1.6}
+.cs-toolbar{display:flex;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+.cs-search{flex:1;min-width:200px;padding:9px 12px;border:1.5px solid var(--border-dim);border-radius:8px;background:var(--bg-input);color:var(--text-primary);font-size:13px;outline:none;font-family:inherit}
+.cs-search:focus{border-color:var(--amber);box-shadow:var(--amber-glow)}
+.cs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.cs-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-left:3px solid #fcd34d;border-radius:var(--r-card);padding:14px 16px;box-shadow:var(--shadow-card);cursor:pointer;transition:all .18s;position:relative}
+.cs-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-amber),var(--shadow-card);border-color:var(--amber)}
+.cs-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
+.cs-marker{font-size:13px;font-weight:800;color:var(--text-primary);line-height:1.3}
+.cs-pt{font-size:11px;color:var(--text-muted);margin-top:2px}
+.cs-section-tag{font-size:9px;font-weight:700;color:#fcd34d;text-transform:uppercase;letter-spacing:.05em;background:rgba(234,179,8,.12);padding:2px 7px;border-radius:var(--r-pill);display:inline-block;margin-top:4px}
+.cs-stats{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.cs-vals{font-size:11px;color:var(--text-secondary)}
+.cs-vals b{color:var(--text-primary)}
+.cs-delta{font-size:12px;font-weight:800;padding:2px 8px;border-radius:var(--r-pill)}
+.cs-delta.good{background:rgba(34,197,94,.14);color:#86efac}
+.cs-delta.bad{background:rgba(239,68,68,.14);color:#fca5a5}
+.cs-spark{height:42px;margin:8px 0 4px;position:relative}
+.cs-note{font-size:11px;color:var(--text-muted);font-style:italic;margin-top:6px;padding:6px 8px;background:rgba(255,255,255,.03);border-radius:6px;border-left:2px solid rgba(234,179,8,.3);min-height:0}
+.cs-actions{display:flex;gap:6px;margin-top:10px;justify-content:flex-end}
+.cs-mini-btn{padding:5px 10px;border-radius:6px;border:1px solid var(--border-dim);background:rgba(255,255,255,.05);color:var(--text-muted);font-size:10px;font-weight:700;cursor:pointer;font-family:inherit}
+.cs-mini-btn:hover{background:rgba(255,255,255,.1);color:var(--text-secondary)}
+.cs-mini-btn.danger:hover{background:rgba(239,68,68,.15);color:#fca5a5;border-color:rgba(239,68,68,.4)}
+.cs-saved{font-size:10px;color:var(--text-dim);position:absolute;top:10px;right:14px}
+
 /* Lab zoom modal */
 .lz-overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;z-index:9998;padding:20px}
 .lz-overlay.show{display:flex}
@@ -1013,6 +1052,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg-
   <div class="dash-tabs">
     <button class="dash-tab active" id="tab-stats" onclick="showStatsTab()">📊 Stats</button>
     <button class="dash-tab" id="tab-patients" onclick="showPatientsTab()">👥 Patients</button>
+    <button class="dash-tab" id="tab-cases" onclick="showCasesTab()">⭐ Case Studies <span id="casesTabCount" style="font-weight:600;color:var(--text-muted);margin-left:2px"></span></button>
   </div>
 
   <div id="statsContent"></div>
@@ -1023,6 +1063,15 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg-
       <span class="dash-count" id="dashCount"></span>
     </div>
     <div class="pt-grid" id="ptGrid"></div>
+  </div>
+
+  <div id="casesContent" style="display:none">
+    <div class="cs-toolbar">
+      <input type="text" class="cs-search" id="casesSearch" placeholder="Search by patient or biomarker…" oninput="renderCasesTab()">
+      <span class="dash-count" id="casesCount"></span>
+      <button class="btn btn-light" onclick="exportStarred()">⬇ Export JSON</button>
+    </div>
+    <div id="casesHost"></div>
   </div>
 </div>
 
@@ -1122,7 +1171,10 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg-
           <div class="lz-title" id="lzTitle">—</div>
           <div class="lz-section" id="lzSection">—</div>
         </div>
-        <button class="lz-close" onclick="closeLabZoom()">✕ Close</button>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button class="star-btn" id="lzStar" data-marker="" onclick="toggleStarBiomarker(this.dataset.marker)">☆ Star for case study</button>
+          <button class="lz-close" onclick="closeLabZoom()">✕ Close</button>
+        </div>
       </div>
       <div class="lz-meta" id="lzMeta"></div>
       <div class="lz-canvas-wrap"><canvas id="lzChart"></canvas></div>
@@ -1391,30 +1443,30 @@ function updateIndex(id, info) {
 // ════════════════════════════════════════════════════════════════
 //  DASHBOARD TABS
 // ════════════════════════════════════════════════════════════════
-function showStatsTab() {
-  var ts = document.getElementById("tab-stats");
-  var tp = document.getElementById("tab-patients");
-  var sc = document.getElementById("statsContent");
-  var pc = document.getElementById("ptContent");
-  if (ts) ts.classList.add("active");
-  if (tp) tp.classList.remove("active");
-  if (sc) sc.style.display = "block";
-  if (pc) pc.style.display = "none";
-  renderStats();
+function _setDashTabs(active){
+  ["tab-stats","tab-patients","tab-cases"].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.classList.toggle("active", id===active);
+  });
 }
-
+function _setDashPanels(visibleId){
+  ["statsContent","ptContent","casesContent"].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.style.display = (id===visibleId ? "block" : "none");
+  });
+}
+function showStatsTab() {
+  _setDashTabs("tab-stats"); _setDashPanels("statsContent");
+  renderStats(); updateCasesTabCount();
+}
 function showPatientsTab() {
-  var ts = document.getElementById("tab-stats");
-  var tp = document.getElementById("tab-patients");
-  var sc = document.getElementById("statsContent");
-  var pc = document.getElementById("ptContent");
-  if (tp) tp.classList.add("active");
-  if (ts) ts.classList.remove("active");
-  if (pc) pc.style.display = "block";
-  if (sc) sc.style.display = "none";
+  _setDashTabs("tab-patients"); _setDashPanels("ptContent");
   var ds = document.getElementById("dashSearch");
   if (ds) ds.value = "";
-  renderDash();
+  renderDash(); updateCasesTabCount();
+}
+function showCasesTab() {
+  _setDashTabs("tab-cases"); _setDashPanels("casesContent");
+  var cs=document.getElementById("casesSearch"); if(cs) cs.value="";
+  renderCasesTab(); updateCasesTabCount();
 }
 
 function renderStats() {
@@ -2563,7 +2615,9 @@ function trendCardHtml(name, visits){
     deltaHtml='<div class="trend-delta '+cls+'">'+(pct>0?"▲":pct<0?"▼":"●")+" "+sign+pct.toFixed(1)+'%</div>';
   }
   var id="tmc_"+name.replace(/[^a-z0-9]/gi,"_");
+  var starOn=isStarred("bm:"+(currentPatientId||"")+":"+name);
   return '<div class="trend-card" onclick="openLabZoom(\''+name.replace(/'/g,"\\'")+'\')">'+
+    '<button class="trend-star'+(starOn?" is-starred":"")+'" id="trendStar_'+name.replace(/[^a-z0-9]/gi,"_")+'" data-star-marker="'+escHtml(name)+'" title="Star for case study" onclick="event.stopPropagation(); toggleStarBiomarker(\''+name.replace(/'/g,"\\'")+'\')">'+(starOn?"★":"☆")+'</button>'+
     '<div class="trend-head">'+
       '<div><div class="trend-name"><span class="trend-status-dot" style="background:'+labColor(st)+'"></span>'+escHtml(name)+'</div>'+
         '<div class="trend-section">'+escHtml(bm.section)+'</div></div>'+
@@ -2769,6 +2823,14 @@ function openLabZoom(name){
   var visits=labVisitsOrdered();
   document.getElementById("lzTitle").textContent=name;
   document.getElementById("lzSection").textContent=bm.section+" · optimal "+fmtNum(bm.optLow)+"–"+fmtNum(bm.optHigh)+" "+(bm.unit||"");
+  // Wire star button to this biomarker
+  var lzs=document.getElementById("lzStar");
+  if(lzs){
+    lzs.dataset.marker=name;
+    var on=isStarred("bm:"+(currentPatientId||"")+":"+name);
+    lzs.classList.toggle("is-starred", on);
+    lzs.innerHTML = on ? "★ Starred" : "☆ Star for case study";
+  }
   var last=visits.length?visits[visits.length-1].data.values[name]:null;
   var first=visits.length?visits[0].data.values[name]:null;
   var meta="";
@@ -2842,6 +2904,242 @@ function openLabZoom(name){
   document.getElementById("lzOverlay").classList.add("show");
 }
 function closeLabZoom(){ document.getElementById("lzOverlay").classList.remove("show"); if(_labZoomChart){ try{_labZoomChart.destroy();}catch(e){} _labZoomChart=null; } }
+
+// ════════════════════════════════════════════════════════════════
+//  STARRED CHARTS — for case study collection
+// ════════════════════════════════════════════════════════════════
+// Star a biomarker trend so it surfaces on the dashboard "Case Studies"
+// tab — your running list of teachable patient transformations to come
+// back to later. Stored in a global localStorage key so the dashboard
+// can render it without loading every patient.
+var STARRED_KEY = "mhw_starred";
+var _csMiniCharts = {};
+
+function loadStarred(){
+  try{ return JSON.parse(_LS.getItem(STARRED_KEY)||"[]"); }catch(e){ return []; }
+}
+function saveStarred(arr){ _LS.setItem(STARRED_KEY, JSON.stringify(arr)); }
+function findStar(id){
+  var all=loadStarred();
+  for(var i=0;i<all.length;i++){ if(all[i].id===id) return i; }
+  return -1;
+}
+function isStarred(id){ return findStar(id)>=0; }
+
+// Build a snapshot of a biomarker — captures what the dashboard card
+// needs to render (sparkline + delta) without re-loading the patient.
+function buildBiomarkerSnapshot(name){
+  var bm=LAB_BIOMARKERS[name]; if(!bm) return null;
+  var visits=labVisitsOrdered();
+  var series=visits.map(function(v){
+    var val=v.data.values[name];
+    return val==null ? null : {date:v.date||("V"+v.vn), val:+val, status:labStatus(name,val)};
+  }).filter(Boolean);
+  if(!series.length) return null;
+  var first=series[0].val, last=series[series.length-1].val;
+  var pct = first===0 ? 0 : ((last-first)/Math.abs(first))*100;
+  return {
+    biomarker:name, section:bm.section, unit:bm.unit||"",
+    optLow:bm.optLow, optHigh:bm.optHigh, dir:bm.dir,
+    series:series, first:first, last:last, pct:pct,
+    klass:classifyChange(name, first, last),
+    statusFrom:series[0].status, statusTo:series[series.length-1].status
+  };
+}
+
+function toggleStarBiomarker(name){
+  if(!currentPatientId) return;
+  var snap=buildBiomarkerSnapshot(name); if(!snap) return;
+  var item={
+    id:"bm:"+currentPatientId+":"+name,
+    type:"biomarker",
+    patientId:currentPatientId,
+    patientName:(S.patientInfo && S.patientInfo.name)||"Unnamed",
+    biomarker:name,
+    snapshot:snap,
+    note:"",
+    savedAt:new Date().toISOString()
+  };
+  var all=loadStarred();
+  var idx=findStar(item.id);
+  if(idx>=0) all.splice(idx,1);
+  else       all.push(item);
+  saveStarred(all);
+  refreshStarButtons(name);
+  updateCasesTabCount();
+  return idx<0;
+}
+
+function refreshStarButtons(name){
+  if(!name) return;
+  var on=isStarred("bm:"+(currentPatientId||"")+":"+name);
+  // Zoom modal star
+  var zb=document.getElementById("lzStar");
+  if(zb && zb.dataset.marker===name){
+    zb.classList.toggle("is-starred", on);
+    zb.innerHTML = on ? "★ Starred" : "☆ Star for case study";
+  }
+  // Trend card star
+  var tid="trendStar_"+name.replace(/[^a-z0-9]/gi,"_");
+  var tb=document.getElementById(tid);
+  if(tb){ tb.classList.toggle("is-starred", on); tb.innerHTML = on?"★":"☆"; }
+}
+function refreshAllStarButtons(){
+  document.querySelectorAll("[data-star-marker]").forEach(function(el){
+    var name=el.getAttribute("data-star-marker");
+    var on=isStarred("bm:"+(currentPatientId||"")+":"+name);
+    el.classList.toggle("is-starred", on);
+    if(el.classList.contains("trend-star")) el.innerHTML = on?"★":"☆";
+  });
+}
+
+function updateCasesTabCount(){
+  var el=document.getElementById("casesTabCount");
+  if(!el) return;
+  var n=loadStarred().length;
+  el.textContent = n>0 ? "("+n+")" : "";
+}
+
+function openStarred(id){
+  var idx=findStar(id); if(idx<0) return;
+  var it=loadStarred()[idx];
+  // Verify the patient still exists
+  var ptIdx=loadIndex();
+  if(!ptIdx.some(function(p){return p.id===it.patientId;})){
+    if(confirm("Patient was deleted. Remove this starred chart?")) unstarById(it.id);
+    return;
+  }
+  openPatient(it.patientId);
+  setTimeout(function(){
+    if(it.type==="biomarker") openLabZoom(it.biomarker);
+    else switchPhase(4);
+  },220);
+}
+function unstarById(id, ev){
+  if(ev){ ev.stopPropagation(); ev.preventDefault(); }
+  var all=loadStarred();
+  var i=findStar(id); if(i<0) return;
+  all.splice(i,1); saveStarred(all);
+  renderCasesTab(); updateCasesTabCount();
+  if(currentPatientId && id.indexOf("bm:"+currentPatientId+":")===0){
+    var name=id.substring(("bm:"+currentPatientId+":").length);
+    refreshStarButtons(name);
+  }
+}
+function editStarNote(id, ev){
+  if(ev){ ev.stopPropagation(); ev.preventDefault(); }
+  var all=loadStarred();
+  var i=findStar(id); if(i<0) return;
+  var current=all[i].note||"";
+  var v=prompt("Note for this case study (shown on the dashboard card):", current);
+  if(v==null) return;
+  all[i].note=v.trim();
+  saveStarred(all);
+  renderCasesTab();
+}
+function exportStarred(){
+  var all=loadStarred();
+  if(!all.length){ alert("No starred case studies to export yet."); return; }
+  var blob=new Blob([JSON.stringify(all,null,2)], {type:"application/json"});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement("a");
+  a.href=url; a.download="case-studies-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+}
+
+function renderCasesTab(){
+  var host=document.getElementById("casesHost"); if(!host) return;
+  Object.keys(_csMiniCharts).forEach(function(k){ try{ _csMiniCharts[k].destroy(); }catch(e){} });
+  _csMiniCharts={};
+  var all=loadStarred();
+  var q=((document.getElementById("casesSearch")||{}).value||"").toLowerCase().trim();
+  if(q) all=all.filter(function(s){
+    return (s.patientName||"").toLowerCase().includes(q) || (s.biomarker||"").toLowerCase().includes(q);
+  });
+  all.sort(function(a,b){ return (b.savedAt||"").localeCompare(a.savedAt||""); });
+
+  var countEl=document.getElementById("casesCount");
+  if(countEl) countEl.textContent = all.length+" starred chart"+(all.length===1?"":"s");
+
+  if(!all.length){
+    host.innerHTML='<div class="cs-empty"><div class="emoji">⭐</div>'+
+      '<h3>No starred charts yet</h3>'+
+      '<p>Open any patient → 🧪 Labs Trends → click a biomarker → tap <b>☆ Star for case study</b>. '+
+      'Your collection of teachable transformations will appear here for easy reference later.</p></div>';
+    return;
+  }
+  host.innerHTML='<div class="cs-grid" id="csGrid"></div>';
+  var grid=document.getElementById("csGrid");
+  all.forEach(function(it){
+    var snap=it.snapshot||{};
+    var card=document.createElement("div");
+    card.className="cs-card";
+    card.onclick=function(){ openStarred(it.id); };
+    var pct=snap.pct||0, sign=pct>0?"+":"";
+    var deltaClass=snap.klass==="improved"?"good":snap.klass==="worsened"?"bad":"";
+    var arrow=pct>0?"▲":pct<0?"▼":"●";
+    var savedDate=(it.savedAt||"").slice(0,10);
+    var safeId=it.id.replace(/[^a-z0-9]/gi,"_");
+    card.innerHTML=
+      '<div class="cs-card-head">'+
+        '<div>'+
+          '<div class="cs-marker">'+escHtml(it.biomarker||"—")+'</div>'+
+          '<div class="cs-pt">👤 '+escHtml(it.patientName||"Unknown")+'</div>'+
+          '<div class="cs-section-tag">'+escHtml(snap.section||"")+'</div>'+
+        '</div>'+
+        '<div class="cs-saved" title="Starred '+escHtml(savedDate)+'">'+escHtml(savedDate)+'</div>'+
+      '</div>'+
+      '<div class="cs-spark"><canvas id="csmc_'+safeId+'"></canvas></div>'+
+      '<div class="cs-stats">'+
+        '<div class="cs-vals">'+fmtNum(snap.first)+' → <b>'+fmtNum(snap.last)+'</b> '+escHtml(snap.unit||"")+'</div>'+
+        '<div class="cs-delta '+deltaClass+'">'+arrow+' '+sign+(pct).toFixed(1)+'%</div>'+
+      '</div>'+
+      (it.note?'<div class="cs-note">'+escHtml(it.note)+'</div>':'')+
+      '<div class="cs-actions">'+
+        '<button class="cs-mini-btn" onclick="editStarNote(\''+it.id.replace(/'/g,"\\'")+'\',event)">📝 Note</button>'+
+        '<button class="cs-mini-btn danger" onclick="unstarById(\''+it.id.replace(/'/g,"\\'")+'\',event)">✕ Unstar</button>'+
+      '</div>';
+    grid.appendChild(card);
+  });
+  setTimeout(function(){ all.forEach(function(it){ drawCaseSpark(it); }); },10);
+}
+
+function drawCaseSpark(it){
+  if(typeof Chart==="undefined") return;
+  var snap=it.snapshot||{}; var series=snap.series||[];
+  if(!series.length) return;
+  var safeId=it.id.replace(/[^a-z0-9]/gi,"_");
+  var canvas=document.getElementById("csmc_"+safeId); if(!canvas) return;
+  var labels=series.map(function(s){return s.date;});
+  var pts=series.map(function(s){return s.val;});
+  var colors=series.map(function(s){return labColor(s.status);});
+  var allVals=pts.concat([snap.optLow, snap.optHigh]);
+  var mn=Math.min.apply(null,allVals), mx=Math.max.apply(null,allVals);
+  var pad=(mx-mn)*0.15 || Math.abs(mx)*0.1 || 1; mn-=pad; mx+=pad;
+  _csMiniCharts[it.id]=new Chart(canvas,{
+    type:"line",
+    data:{labels:labels, datasets:[{
+      data:pts, borderColor:"#fcd34d", borderWidth:2, tension:.3,
+      pointRadius:3, pointBackgroundColor:colors, pointBorderColor:colors, fill:false
+    }]},
+    options:{
+      responsive:true, maintainAspectRatio:false, animation:false,
+      plugins:{legend:{display:false}, tooltip:{enabled:false}},
+      scales:{x:{display:false}, y:{display:false, min:mn, max:mx}}
+    },
+    plugins:[{
+      id:"csOptBand",
+      beforeDatasetsDraw:function(chart){
+        var ctx=chart.ctx, yA=chart.scales.y, xA=chart.scales.x;
+        var yLo=yA.getPixelForValue(snap.optLow), yHi=yA.getPixelForValue(snap.optHigh);
+        ctx.save(); ctx.fillStyle="rgba(34,197,94,.12)";
+        ctx.fillRect(xA.left, Math.min(yLo,yHi), xA.right-xA.left, Math.abs(yHi-yLo));
+        ctx.restore();
+      }
+    }]
+  });
+}
 
 // Demo seeder: 3-visit metabolic turnaround story — for showing off the Trends tab.
 // Trigger with ?demo=1 in the URL (once; won't re-seed if already present).
